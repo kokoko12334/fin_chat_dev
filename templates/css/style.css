@@ -1,0 +1,456 @@
+@import url(./reset.css);
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+body {
+  font-family: "Pretendard", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
+}
+
+.close_btn:active {
+  transform: scale(0.8);
+}
+
+.close_btn {
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+.hello {
+  color: #000;
+
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.625rem; /* 130% */
+  letter-spacing: -0.0375rem;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  height: 100vh;
+}
+
+.chat_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  /* margin-right: 1.5rem; */
+  z-index: 100; /* 다른 요소 위에 표시되도록 z-index 설정 */
+  /* background: rgba(140, 210, 202, 0.298); */
+}
+
+.chat_header_shadow {
+  /* background-color: red; */
+  height: 3.5rem;
+}
+
+.use-area {
+  /* height: calc(100vh - 9rem); */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* background-color: antiquewhite; */
+}
+
+.placeholder-area{
+  /* background-color: #ab2c20; */
+}
+
+.chat-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2.5rem;
+  overflow-y: auto;
+  /* flex-shrink: 0; */
+  /* max-height: calc(100vh - 9rem); */
+  /* height: auto; */
+  /* background-color: red; */
+}
+
+.chat_fixed-area {
+  /* position: fixed; */
+  /* background-color: blue; */
+  z-index: 200;
+  margin-top: 2.5rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  /* background-color: white; */
+  /* background-color: #9d9d9d; */
+}
+
+.leg-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bot_start {
+  display: flex;
+  margin-top: 2.5rem;
+}
+
+.keyword_reco {
+  margin-top: 1.5rem; margin-bottom: 1rem
+}
+
+.keyword_box {
+}
+
+.keyword_item {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 1.25rem;
+  border: 1px solid #000;
+  background: #fff;
+  letter-spacing: -0.03rem;
+  margin-bottom: 0.5rem;
+  visibility: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.keyword_item.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.keyword_item.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%); /* 시작 위치 */
+    opacity: 0; /* 투명하게 시작 */
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0); /* 최종 위치 */
+    opacity: 1; /* 완전 불투명 */
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%); /* 시작 위치 */
+    opacity: 0; /* 투명하게 시작 */
+  }
+  to {
+    transform: translateX(0); /* 최종 위치 */
+    opacity: 1; /* 완전 불투명 */
+  }
+}
+
+.message.bot {
+  flex-shrink: 0;
+  animation: slideInFromLeft 1s ease-in-out;
+  max-width: fit-content;
+  margin-bottom: 2.37rem;
+  /* padding-bottom: 2.37rem; */
+}
+
+.message.user {
+  flex-shrink: 0;
+  animation: slideInFromRight 0.5s ease-in-out;
+  max-width: fit-content;
+  margin-bottom: 2.37rem;
+}
+
+.message:last-child {
+  border-bottom: none;
+}
+.user {
+  align-self: flex-end;
+  color: #9d9d9d;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2rem; /* 123.077% */
+  letter-spacing: -0.04875rem;
+}
+.bot {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25rem; /* 125% */
+  letter-spacing: -0.03rem;
+}
+
+.chat_footer {
+  height: 7rem;
+  /* background-color: #42EDE6; */
+  border-top: 1px solid #efefef;
+}
+
+.input-container {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 2.5rem 2.5rem 2.5rem;
+  padding: 1rem;
+  border-radius: 1.875rem;
+  background: #f6f6f6;
+  flex-shrink: 0;
+}
+
+.input-text {
+  flex: 1;
+  background-color: #f6f6f6;
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.02625rem;
+  border-color: transparent;
+  overflow: auto;
+  resize: none;
+  border-radius: 4px;
+  width: 100%;
+  height: 1.0625rem;
+  margin-right: 0.75rem;
+  overflow-y: auto; /* Enable vertical scrollbar if needed */
+  resize: none; /* Remove the resize handle */
+  min-height: 1.0625rem; /* Set a minimum height */
+}
+
+.input-text::-webkit-scrollbar {
+  display: none;
+}
+
+.input-text:disabled {
+  color: transparent;
+}
+
+.input-text:disabled::placeholder {
+  color: transparent;
+}
+
+.button-send {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border: none;
+  display: flex;
+  background-color: #aaaaaa;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s ease;
+}
+
+.button-send:not([disabled]) {
+  background-color: #ab2c20;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blinking {
+  0%, 100% {
+    fill: #42EDE6;
+  }
+  20% {
+    fill: transparent;
+  }
+}
+
+.bot_wrapper {
+  width: 3.75rem;
+  height: 3.75rem;
+  border: 2px solid #e0e0ea;
+  border-radius: 50%;
+}
+
+.eye {
+  animation: blinking 2.5s infinite;
+}
+
+.botFaceWrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e0e0ea;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.botFace {
+  background-image: url("/templates/image/bot_face.svg");
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: calc(100% + 4px) calc(100% + 5px);
+}
+
+.loading-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top: 2px solid black;
+  animation: spin 1s linear infinite;
+}
+
+.message.bot::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.message.bot {
+  overflow-x: auto;
+  /* overflow-y: auto; */
+}
+
+.message.bot table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.message.bot table,
+.message.bot th,
+.message.bot td {
+  border: 1px solid #000;
+}
+
+.message.bot th,
+.message.bot td {
+  padding: 8px 12px;
+}
+
+.message.bot th {
+  background-color: #f2f2f2;
+}
+
+.chat-area::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.chat-area {
+  /* -ms-overflow-style: none; */
+  /* scrollbar-width: none; */
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.time {
+  margin-bottom: 0.75rem;
+  margin-top: 0.37rem;
+  color: #9d9d9d;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.02063rem;
+}
+
+
+@media screen and (min-height: 360px) and (max-height: 768px) {
+  .chat-placeholder {
+    /* height: 37vh; */
+    /* background-color: blue; */
+  }
+  
+}
+

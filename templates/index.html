@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>챗봇 화면</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/templates/image/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/templates/image/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/templates/image/favicon-16x16.png"
+    />
+    <link rel="stylesheet" href="/templates/css/style.css" type="text/css" />
+  </head>
+
+  <body>
+    <div class="chat-container">
+      <div class="chat_header">
+        <!-- 새로고침 효과도..? -->
+        <div
+          class="reset_btn"
+          style="width: 1.5rem; height: 1.5rem"
+          onclick="refreshWebView()"
+        >
+          <img src="/templates/image/refresh.svg" />
+        </div>
+        <div
+          class="close_btn"
+          style="width: 1.5rem; height: 1.5rem"
+          onclick="closeWebView()"
+        >
+          <img src="/templates/image/backarrow.svg" />
+        </div>
+      </div>
+
+      <!-- <div class="use-area"> -->
+        <!-- <div class="chat_header_shadow"></div> -->
+
+        <div class="chat_fixed-area">
+          <div class="bot_start">
+            <div class="bot_wrapper">
+              <div
+                class="bot_svg_wrapper"
+                style="margin-top: 0.75rem; margin-left: 0.31rem"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="55"
+                  height="48"
+                  viewBox="0 0 55 48"
+                  fill="none"
+                >
+                  <path
+                    d="M42.3609 20.4758C42.3609 27.9866 36.1288 34.0742 28.4397 34.0742H21.7487C14.0596 34.0742 7.82748 27.9866 7.82748 20.4758C7.82748 12.9651 14.0596 6.87744 21.7487 6.87744H28.4397C36.1288 6.87744 42.3609 12.9651 42.3609 20.4758Z"
+                    fill="url(#paint0_radial_1046_1862)"
+                  />
+                  <path
+                    d="M16.9844 13.1714H33.1967C35.7536 13.1714 37.8298 15.1994 37.8298 17.6971V23.251C37.8298 25.7487 35.7536 27.7767 33.1967 27.7767H16.9808C14.4238 27.7767 12.3477 25.7487 12.3477 23.251V17.6971C12.3477 15.1994 14.4238 13.1714 16.9808 13.1714H16.9844Z"
+                    fill="url(#paint1_radial_1046_1862)"
+                  />
+                  <path
+                    opacity="0.2"
+                    d="M37.8334 17.6971C37.8334 15.1994 35.7573 13.1714 33.2003 13.1714H16.9881C14.4275 13.1714 12.355 15.1958 12.355 17.6971V19.4796C29.1646 16.2063 37.8334 19.4796 37.8334 19.4796V17.6971Z"
+                    fill="white"
+                  />
+                  <g filter="url(#filter0_d_1046_1862)">
+                    <path
+                      class="eye"
+                      d="M21.4755 20.0916C21.4755 21.0807 20.656 21.8813 19.6434 21.8813C18.6308 21.8813 17.8113 21.0807 17.8113 20.0916C17.8113 19.1025 18.6308 18.302 19.6434 18.302C20.656 18.302 21.4755 19.1025 21.4755 20.0916Z"
+                      fill="#42EDE6"
+                    />
+                  </g>
+                  <g filter="url(#filter1_d_1046_1862)">
+                    <path
+                      class="eye"
+                      d="M32.9017 20.0916C32.9017 21.0807 32.0821 21.8813 31.0695 21.8813C30.057 21.8813 29.2374 21.0807 29.2374 20.0916C29.2374 19.1025 30.057 18.302 31.0695 18.302C32.0821 18.302 32.9017 19.1025 32.9017 20.0916Z"
+                      fill="#42EDE6"
+                    />
+                  </g>
+                  <path
+                    style="mix-blend-mode: screen"
+                    d="M13.4623 10.7664L13.6444 12.1077C13.6444 12.1077 12.355 12.4991 11.4954 13.449C11.4954 13.449 11.3642 11.8444 13.4623 10.7664Z"
+                    fill="url(#paint2_linear_1046_1862)"
+                  />
+                  <path
+                    style="mix-blend-mode: screen"
+                    d="M17.8113 9.07283C17.8113 9.07283 19.1808 8.15844 21.2934 8.3648H28.5308C28.5308 8.3648 30.7745 8.63876 31.2662 9.46064L17.8076 9.07283H17.8113Z"
+                    fill="url(#paint3_linear_1046_1862)"
+                  />
+                  <path
+                    d="M26.207 2.98511H25.249V6.87748H26.207V2.98511Z"
+                    fill="url(#paint4_linear_1046_1862)"
+                  />
+                  <path
+                    d="M27.4272 1.66155C27.4272 2.5795 26.6659 3.3231 25.7262 3.3231C24.7864 3.3231 24.0252 2.5795 24.0252 1.66155C24.0252 0.743607 24.7864 0 25.7262 0C26.6659 0 27.4272 0.743607 27.4272 1.66155Z"
+                    fill="url(#paint5_radial_1046_1862)"
+                  />
+                  <path
+                    d="M8.76358 14.6301H7.37947C7.37947 14.6301 5.61292 16.434 5.86788 20.2303C5.86788 20.2303 5.77682 23.6352 7.30298 25.3359H8.69802L8.76358 14.6301Z"
+                    fill="url(#paint6_linear_1046_1862)"
+                  />
+                  <path
+                    d="M9.20431 14.6301H8.57417V25.3359H9.20431V14.6301Z"
+                    fill="#42EDE6"
+                  />
+                  <path
+                    d="M41.4248 14.6301H42.8089C42.8089 14.6301 44.5719 16.434 44.3205 20.2303C44.3205 20.2303 44.4116 23.6352 42.8854 25.3359H41.4904L41.4248 14.6301Z"
+                    fill="url(#paint7_linear_1046_1862)"
+                  />
+                  <path
+                    d="M41.6142 14.6301H40.9841V25.3359H41.6142V14.6301Z"
+                    fill="#42EDE6"
+                  />
+                  <defs>
+                    <filter
+                      id="filter0_d_1046_1862"
+                      x="6.47126"
+                      y="6.962"
+                      width="26.3442"
+                      height="26.2593"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      />
+                      <feOffset />
+                      <feGaussianBlur stdDeviation="5.67" />
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.701961 0 0 0 0 1 0 0 0 0 0.976471 0 0 0 1 0"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_1046_1862"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_1046_1862"
+                        result="shape"
+                      />
+                    </filter>
+                    <filter
+                      id="filter1_d_1046_1862"
+                      x="17.8974"
+                      y="6.962"
+                      width="26.3442"
+                      height="26.2593"
+                      filterUnits="userSpaceOnUse"
+                      color-interpolation-filters="sRGB"
+                    >
+                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      />
+                      <feOffset />
+                      <feGaussianBlur stdDeviation="5.67" />
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.701961 0 0 0 0 1 0 0 0 0 0.976471 0 0 0 1 0"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_1046_1862"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_1046_1862"
+                        result="shape"
+                      />
+                    </filter>
+                    <radialGradient
+                      id="paint0_radial_1046_1862"
+                      cx="0"
+                      cy="0"
+                      r="1"
+                      gradientUnits="userSpaceOnUse"
+                      gradientTransform="translate(25.0924 20.4758) scale(15.6841 15.3204)"
+                    >
+                      <stop stop-color="#F1F1F5" />
+                      <stop offset="0.55" stop-color="#E4E2EC" />
+                      <stop offset="1" stop-color="#CFCFDE" />
+                    </radialGradient>
+                    <radialGradient
+                      id="paint1_radial_1046_1862"
+                      cx="0"
+                      cy="0"
+                      r="1"
+                      gradientUnits="userSpaceOnUse"
+                      gradientTransform="translate(25.0924 20.4906) scale(10.4464 9.48985)"
+                    >
+                      <stop stop-color="#3E3C44" />
+                      <stop offset="0.55" stop-color="#242327" />
+                      <stop offset="1" stop-color="#040100" />
+                    </radialGradient>
+                    <linearGradient
+                      id="paint2_linear_1046_1862"
+                      x1="11.4917"
+                      y1="12.1077"
+                      x2="14.453"
+                      y2="12.1077"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="white" />
+                      <stop offset="1" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint3_linear_1046_1862"
+                      x1="17.8113"
+                      y1="8.89493"
+                      x2="36.3437"
+                      y2="8.89493"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="white" />
+                      <stop offset="1" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint4_linear_1046_1862"
+                      x1="25.249"
+                      y1="4.93129"
+                      x2="26.2033"
+                      y2="4.93129"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#F1F1F5" />
+                      <stop offset="0.55" stop-color="#E4E2EC" />
+                      <stop offset="1" stop-color="#CFCFDE" />
+                    </linearGradient>
+                    <radialGradient
+                      id="paint5_radial_1046_1862"
+                      cx="0"
+                      cy="0"
+                      r="1"
+                      gradientUnits="userSpaceOnUse"
+                      gradientTransform="translate(25.7262 1.66155) scale(1.70099 1.66155)"
+                    >
+                      <stop stop-color="#F1F1F5" />
+                      <stop offset="0.55" stop-color="#E4E2EC" />
+                      <stop offset="1" stop-color="#CFCFDE" />
+                    </radialGradient>
+                    <linearGradient
+                      id="paint6_linear_1046_1862"
+                      x1="7.30298"
+                      y1="14.865"
+                      x2="7.30298"
+                      y2="24.9268"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#F1F1F5" />
+                      <stop offset="0.52" stop-color="#D5CFD9" />
+                      <stop offset="1" stop-color="#BBBBCA" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint7_linear_1046_1862"
+                      x1="42.8854"
+                      y1="-7.14932e-05"
+                      x2="42.8854"
+                      y2="-7.14932e-05"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#F1F1F5" />
+                      <stop offset="0.52" stop-color="#D5CFD9" />
+                      <stop offset="1" stop-color="#BBBBCA" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <div style="margin-left: 0.5rem">
+              <p class="hello" id="typing1"></p>
+              <p class="hello" id="typing2" style="visibility: hidden"></p>
+            </div>
+          </div>
+
+          <div class="keyword_reco hidden">How about this Keywords?</div>
+          <div class="keyword_box">
+            <div class="keyword_item" onclick="keywordItemClick(this)">
+              What is MOFIN company?
+            </div>
+            <div class="keyword_item" onclick="keywordItemClick(this)">
+              Analyze the APPLE stock.
+            </div>
+            <div class="keyword_item" onclick="keywordItemClick(this)">
+              Stock market trends.
+            </div>
+            <div class="keyword_item" onclick="keywordItemClick(this)">
+              Today's pick3
+            </div>
+            <!-- <div class="keyword_item" onclick="keywordItemClick(this)">
+              Recommend today's stocks.
+            </div> -->
+          </div>
+          <div class="time"></div>
+        </div>
+        <!-- <div class="placeholder-area"></div> -->
+
+        <div class="chat-area"></div>
+
+        <div class="chat_footer">
+          <div class="input-container">
+            <textarea
+              class="input-text"
+              placeholder="Please enter your message."
+              onkeypress="handleEnter(event)"
+              oninput="lineChange(this)"
+            ></textarea>
+            <button class="button-send" onclick="stream()" disabled>
+              <img src="/templates/image/send.svg" />
+            </button>
+          </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      // window.addEventListener("resize", adjustPlaceholderHeight);
+
+      // function adjustPlaceholderHeight() {
+      //   var topBarHeight = document.querySelector(".chat_header").offsetHeight;
+      //   var keywordAreaHeight =
+      //     document.querySelector(".chat_fixed-area").offsetHeight;
+      //   var totalHeight = topBarHeight + keywordAreaHeight;
+      //   document.querySelector(".placeholder-area").style.height =
+      //     totalHeight + "px";
+      // }
+
+      // adjustPlaceholderHeight();
+
+      // textarea에 포커스가 있을 때 버튼을 활성화합니다.
+
+      /** 웹뷰 새로고침 */
+      function refreshWebView() {
+        // 애니메이션 클래스를 추가합니다.
+        const resetBtn = document.querySelector(".reset_btn");
+        resetBtn.classList.add("spin-animation");
+
+        // 애니메이션이 끝나면 클래스를 제거합니다.
+        resetBtn.addEventListener("animationend", () => {
+          resetBtn.classList.remove("spin-animation");
+        });
+
+        // 여기에 웹뷰를 새로고침하는 코드를 추가합니다.
+        window.ReactNativeWebView.postMessage("refresh");
+      }
+
+      /** 웹뷰 끄기 */
+      function closeWebView() {
+        window.ReactNativeWebView.postMessage("close");
+      }
+
+      /** 초기 시간 설정, 타이핑 완료 후 호출 */
+      function getTime() {
+        // 현재 시간을 가져와서 설정
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+
+        // 시간이 한 자릿수라면 앞에 '0'을 붙임
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+
+        // 00:00 형태로 시간 문자열을 만듦
+        const timeString = `${hours}:${minutes}`;
+
+        // HTML에 현재 시간 표시
+        document.querySelector(".time").innerText = timeString;
+      }
+
+      /** textarea 줄바꿈 */
+      function lineChange(element) {
+        const maxContainerHeight = window.innerHeight / 3; // Max height of the container
+        element.style.height = "5px"; // Temporarily shrink to get the scroll height
+        const newHeight = element.scrollHeight;
+
+        if (newHeight < maxContainerHeight) {
+          // If the new height is less than the max, apply it
+          element.style.height = newHeight + "px";
+        } else {
+          // If the new height is greater than the max, set the max and enable scrolling
+          element.style.height = maxContainerHeight + "px";
+        }
+      }
+
+      /** 타이핑 효과.. startTyping() */
+      function typeWriter(elementId, text, n, callback) {
+        if (n < text.length) {
+          document.getElementById(elementId).innerHTML = text.substring(
+            0,
+            n + 1
+          );
+          setTimeout(function () {
+            typeWriter(elementId, text, n + 1, callback);
+          }, 50); // 타이핑 속도 조절
+        } else if (callback) {
+          callback();
+        }
+      }
+
+      function startTyping() {
+        var text1 = "Hello, I’m MO-GENE";
+        var text2 = "May I help you?";
+        typeWriter("typing1", text1, 0, function () {
+          document.getElementById("typing2").style.visibility = "visible";
+          typeWriter("typing2", text2, 0, afterTyping);
+        });
+      }
+
+      function afterTyping() {
+        // 'How about this Keywords?' 메시지에 애니메이션 클래스 추가 및 표시
+        var messageBot = document.querySelector(".keyword_reco");
+        messageBot.classList.remove("hidden");
+        messageBot.classList.add("visible");
+        messageBot.classList.add("slide-up");
+
+        // 각 키워드 아이템에 순차적으로 애니메이션 클래스 추가 및 표시
+        var keywordItems = document.querySelectorAll(".keyword_item");
+        keywordItems.forEach(function (item, index) {
+          // 초기에 각 키워드 아이템을 숨김
+          item.classList.add("hidden");
+
+          // 각 키워드 아이템의 애니메이션 시작 시간을 지연시키기
+          setTimeout(function () {
+            item.classList.remove("hidden");
+            item.classList.add("visible");
+            item.classList.add("slide-up");
+          }, (index + 1) * 250); // 0.5초 간격
+        });
+
+        // 모든 키워드 아이템 애니메이션의 완료 후 getTime 함수를 호출하기 위한 지연 시간 계산
+        const totalKeywords = document.querySelectorAll(".keyword_item").length;
+        const lazyGetTime = (totalKeywords + 1) * 280;
+
+        // 지연 시간 후에 getTime 함수 호출
+        setTimeout(getTime, lazyGetTime);
+      }
+
+      // 페이지가 로드되면 타이핑 효과 시작
+      window.onload = startTyping;
+    </script>
+    <script src="../templates/js/script.js"></script>
+  </body>
+</html>
